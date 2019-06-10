@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "ui": "vue ui",
+    "setup": "cd ./prototype; yarn install",
+    "dev": "cd ./prototype; yarn serve",
+    "test": "cd ./prototype; yarn test:unit"
+  },
+  "dependencies": {
+    "@vue/cli": "^3.8.2"
+  }
+}
