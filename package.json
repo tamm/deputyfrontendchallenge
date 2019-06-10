@@ -1,7 +1,7 @@
 {
   "scripts": {
     "ui": "vue ui",
-    "setup": "cd ./prototype; yarn install",
+    "setup": "yarn install; cd ./prototype; yarn install",
     "dev": "cd ./prototype; yarn serve",
     "test": "cd ./prototype; yarn test:unit"
   },

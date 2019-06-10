@@ -1,4 +1,4 @@
-import { mount, shallowMount, createLocalVue } from '@vue/test-utils'
+import { mount, createLocalVue } from '@vue/test-utils'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { locations } from '@/store/module.locations.js'

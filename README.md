@@ -8,6 +8,8 @@ I have built a small demo in Vue, using Vue CLI and Vuetify.
   `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 3. Then run this command to install node:
   `brew install node git`
+3. Install Yarn
+  `npm install -g yarn`
 4. Clone the project to your computer.
   `git clone git@github.com:tamm/deputyfrontendchallenge.git`
 5. Navigate into the folder.
