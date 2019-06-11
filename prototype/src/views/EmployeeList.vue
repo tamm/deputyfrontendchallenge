@@ -28,7 +28,7 @@
         </v-layout>
       </v-flex>
 
-      <v-flex class="employee-list">
+      <v-flex xs12 class="employee-list">
         <v-progress-linear :indeterminate="true" :active="loading"></v-progress-linear>
 
         <v-data-table
@@ -72,7 +72,7 @@
 
     <v-btn class="control-reset" color="primary" block :disabled="loading" @click="reset">Reset</v-btn>
     <v-btn class="control-load-more" color="primary" block :disabled="loading" @click="loadEmployees">Load more</v-btn>
-    <v-btn class="control-load-huge-amount" color="primary" block :disabled="loading" @click="loadEmployees(true)">Load a huge amount more</v-btn>
+    <v-btn class="control-load-huge-amount" color="primary" block :disabled="loading" @click="loadHugeAmountOfEmployees">Load a huge amount more</v-btn>
 
     <EmployeeProfileDialog v-model="selectedEmployee" v-if="selectedEmployee" />
   </v-container>
@@ -87,6 +87,8 @@
     data: () => ({
       filterType: null,
       filterText: null,
+      selectedEmployee: null,
+      loading: false,
       errorMessages: [],
       columns: [
         {
@@ -129,8 +131,6 @@
           value: 'status',
         },
       ],
-      selectedEmployee: null,
-      loading: false,
     }),
     computed: {
       ...mapState({
@@ -195,10 +195,17 @@
       viewEmployee(employee) {
         this.selectedEmployee = employee
       },
-      loadEmployees(hugeAmount) {
+      loadEmployees() {
         this.loading = true
 
-        this.getEmployees(hugeAmount).then(() => {
+        this.getEmployees().then(() => {
+          this.loading = false
+        })
+      },
+      loadHugeAmountOfEmployees() {
+        this.loading = true
+
+        this.getEmployees(true).then(() => {
           this.loading = false
         })
       },

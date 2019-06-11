@@ -8,18 +8,18 @@ I have built a small demo in Vue, using Vue CLI and Vuetify.
   `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 3. Then run this command to install node:
   `brew install node git`
-3. Install Yarn
+4. Install Yarn
   `npm install -g yarn`
-4. Clone the project to your computer.
+5. Clone the project to your computer.
   `git clone git@github.com:tamm/deputyfrontendchallenge.git`
-5. Navigate into the folder.
+6. Navigate into the folder.
   `cd deputyfrontendchallenge`
-6. Run the setup.
+7. Run the setup.
   `yarn setup`
-7. Start the Vue CLI UI, if you want, it's neat.
+8. Start the Vue CLI UI, if you want, it's neat.
   `yarn ui`
   Then run the task serve.
-7. Or manually start the project.
+8. Or manually start the project.
   `yarn dev`
 
 ## Tests
@@ -71,14 +71,15 @@ If I have a REST API such as the one I use in this demo I would also utilise the
 I would also use a reverse proxy to provide the same reply to many clients asking the same question at almost the same time, for example if the user has the same application open on many devices reloading data at the same time.
 
 ## Do you need to do data validation?
-This depends on what type of validation is best for a user. For example a lot of people try to make sure that an email address is correct according to a pattern, either allowing anything which seems like it _might_ be an email address, or allowing only email addresses which follow the more common usage.
+This depends on what type of validation is best for a specific type of user.
 
-The same goes for phone numbers, the representation of which can vary greatly between countries.
+For example a lot of people try to make sure that an email address is correct according to a regex pattern, this can result in both false positives and false negatives. It might be better to verify email addressed by sending an email, than to check a form field.
 
-I would generally suggest using some form of validation, but perhaps it would be better to simply alert the user to potential issues with their input, rather than refuse input which might be just as valid?
+If we want to we can also check emails against the first and last name, because a lot of people have emails like `first.last@domain.tld` and if the entered email is close but not quite right we might want to just let the user know it looks odd. We could do this for a lot of rules.
 
-What if we require an email address, and the user doesn't know what to put for the moment? Wouldn't it make sense to alert the user to the need for an email address, and still accept the other input? Maybe they simple need to fill in a form with the incomplete data they have on hand and save it, to come back and complete the rest later?
+The same goes for phone numbers, the representation of which can vary greatly between countries. Maybe we should just check that there are no letters?
+
+What if we require an email address, and the user doesn't know what to put for the moment? Wouldn't it make sense to alert the user to the need for an email address, and still accept the other input? Maybe they simply need to fill in a form with the incomplete data they have on hand and save it, to come back and complete the rest later?
 
 # TODO
-* Speed optimization.
-* Data validation.
+* Speed optimization of dev, Vuetify can be slow to compile.

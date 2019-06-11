@@ -24,13 +24,19 @@
         </v-flex>
         <v-flex>
           <v-card-text>
-            <v-form v-model="valid">
+            <v-form
+              ref="employee-form"
+              v-model="valid"
+              lazy-validation
+            >
               <v-text-field
                 type="email"
                 name="email"
                 label="Email"
                 v-model="localEmployee.email"
                 @keyup.native.stop.enter="saveEmployee"
+                :rules="emailRules"
+                required
               ></v-text-field>
 
               <v-text-field
@@ -39,6 +45,7 @@
                 label="Mobile"
                 v-model="localEmployee.cell"
                 @keyup.native.stop.enter="saveEmployee"
+                :rules="phoneNumberRules"
               ></v-text-field>
 
               <v-text-field
@@ -47,6 +54,7 @@
                 label="Phone"
                 v-model="localEmployee.phone"
                 @keyup.native.stop.enter="saveEmployee"
+                :rules="phoneNumberRules"
               ></v-text-field>
 
               <v-select
@@ -57,6 +65,8 @@
                 label="Location"
                 name="location"
                 return-object
+                :rules="requiredRules"
+                required
               ></v-select>
 
               <v-menu
@@ -80,6 +90,8 @@
                     prepend-icon="event"
                     readonly
                     v-on="on"
+                    :rules="requiredRules"
+                    required
                   ></v-text-field>
                 </template>
                 <v-date-picker v-model="localEmployee.dob.date" no-title scrollable>
@@ -173,6 +185,16 @@
         saving: false,
         valid: true,
         localEmployee: JSON.parse(JSON.stringify(this.value)),
+        emailRules: [
+          v => !!v || 'E-mail is required',
+          v => /.+@.+/.test(v) || 'E-mail must be valid',
+        ],
+        phoneNumberRules: [
+          v => !v || /^[\W\d]+$/.test(v) || 'Only use numbers and formatting',
+        ],
+        requiredRules: [
+          v => !!v || 'This field is required',
+        ],
       }
     },
     computed: {
